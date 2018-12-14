@@ -1,45 +1,51 @@
-#ifndef QLEARN_H
-#define QLEARN_H
+#ifndef QLEARNING_H
+#define QLEARNING_H
 
 #include <iostream>
 #include <iomanip>
 #include <ctime>
 #include <stdio.h>
 #include <string.h>
+#include <fstream>
 
-class Qlearn
+
+
+
+class Qlearning
 {
 public:
-    Qlearn();
-    void episode();
-    void chooseAction(int initialState);
-    int getRandomAction();
-    void initialize();
-    int maximum(int state, bool returnIndexOnly, bool temp);
-    int reward(int action);
-    void getReward(int action);
-    void printRtemp();
-    void printroute();
-    void printR();
-    void iterate(int iterations);
-
-
-    int initialStates[6] = {1, 3, 5, 2, 4, 0};
-    int Q[6][6];
-    int R[6][6] =  {{-1, 0, 0, 0, 0, 0},
-                    {0, -1, 0, 0, 0, 0},
-                    {0, 0, -1, 0, 0, 0},
-                    {0, 0, 0, -1, 0, 0},
-                    {0, 0, 0, 0, -1, 0},
-                    {0, 0, 0, 0, 0, -1}};
-
     int currentState;
+    int prevState;
+
+    Qlearning();
+    ~Qlearning();
+    void Run();
+    int ChooseAction(int initialState);
+    int GetRandomAction();
+    int GetBestAction();
+    void Initialize();
+    int Maximum(int state, bool returnIndexOnly);
+    int Reward(int marbles, double time);
+    void GetReward(int action);
+    void PrintR();
+    void PrintRoute();
+    void WriteToFile();
+    void ReadFromFile();
+    void UpdateReward(int currS, int prevS, int point, double time);
+
+    int rSize = 12;
+    int rewardV;
+
 private:
-    //const int qSize = 6;
-    const double gamma = 0.8;
-    int newState;
-    int rSize=6;
-    int RTemp[6][6];
+    int R[12][12];
+    int initialStates[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+    int possibleAction;
+
+    const double gamma = 0.2;
+    const double alpha = 0.1;
+    int newState = 0;
+    int RTemp[12][12];
+
 };
 
-#endif // QLEARN_H
+#endif // QLEARNING_H
