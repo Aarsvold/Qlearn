@@ -230,7 +230,7 @@ void Qlearning::UpdateReward(int currS, int prevS, int point, double time)
     //std::cout << "her1" << std::endl;
     //std::cout << gamma * R[currentState][possibleAction] << std::endl;
     rewardV=point/time;
-
+/*
     std::cout << "prev R:  " << R[prevS][currS] << std::endl;
     std::cout << "prev S:  " << prevS << std::endl;
     std::cout << "curr S:  " << currS << std::endl;
@@ -238,7 +238,7 @@ void Qlearning::UpdateReward(int currS, int prevS, int point, double time)
     std::cout << "part 1:  " << alpha*( + gamma*(Qlearning::Maximum(currS,false))) << std::endl;
     std::cout << "part 2:  " << Qlearning::Maximum(currS,false) << std::endl;
     std::cout << "whatever:  " << R[prevS][currS]+alpha*(rewardV + gamma*(Qlearning::Maximum(currS,false)) - R[prevS][currS]) << std::endl;
-
+*/
     R[prevS][currS]=R[prevS][currS]+alpha*(rewardV + gamma*(Qlearning::Maximum(currS,false)) - R[prevS][currS]);
 
     for(int i = 0; i <= (rSize - 1); i++){
