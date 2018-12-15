@@ -43,8 +43,8 @@ private:
     int possibleAction;
 
     const double gamma = 0.5;
-    const double alpha = 0.7;
-    const int e = 3;
+    const double alpha = 0.5;
+    const int e = 15;
     int newState = 0;
     int RTemp[12][12];
 

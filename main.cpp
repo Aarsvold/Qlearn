@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     double times;
     Qlearning Qlearn;
 
-    for(int i = 0; i<300; i++){
+    for(int i = 0; i<10; i++){
 
     int maxReward=0;
     int marblesC=0;
@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
         }
         else
             points=0;
-        std::cout << "marbles" << marbles << std::endl;
-        std::cout << "marblesC" << marblesC << std::endl;
-        std::cout << "points" << points << std::endl;
+        //std::cout << "marbles" << marbles << std::endl;
+        //std::cout << "marblesC" << marblesC << std::endl;
+        //std::cout << "points" << points << std::endl;
 
         Qlearn.currentState=Qlearn.ChooseAction(Qlearn.currentState);
        switch (Qlearn.currentState) {
@@ -585,7 +585,7 @@ int main(int argc, char *argv[])
             times=0;
             break;
         }
-        std::cout << "times:  " << times << std::endl;
+        //std::cout << "times:  " << times << std::endl;
         Qlearn.UpdateReward(Qlearn.currentState,Qlearn.prevState,points, times);
 
         Qlearn.prevState=Qlearn.currentState;
@@ -601,7 +601,7 @@ int main(int argc, char *argv[])
 
 
 
-    std::cout << "maxReward" << maxReward << std::endl;
+    //std::cout << "maxReward" << maxReward << std::endl;
     Qlearn.Run();
     //Qlearn.PrintRoute();
     }
