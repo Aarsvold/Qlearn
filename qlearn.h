@@ -35,14 +35,16 @@ public:
 
     int rSize = 12;
     int rewardV;
+    int numRand=0;
 
 private:
     int R[12][12];
     int initialStates[12] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
     int possibleAction;
 
-    const double gamma = 0.2;
-    const double alpha = 0.1;
+    const double gamma = 0.8;
+    const double alpha = 0.2;
+    const int e = 2;
     int newState = 0;
     int RTemp[12][12];
 

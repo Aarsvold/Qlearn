@@ -38,6 +38,7 @@ void Qlearning::Run()
 
 int Qlearning::GetRandomAction()
 {
+    numRand++;
     int action;
     bool choiceIsValid = false;
     //printRTemp();
@@ -68,10 +69,10 @@ int Qlearning::ChooseAction(int currstate)
 {
     currentState = currstate;
 
-    int var = (rand() % 99)+1;
+    int var = (rand() % 100);
     //std::cout << var << std::endl;
 
-    if(var<=3)
+    if(var<Qlearning::e)
     {
         possibleAction = GetRandomAction();
     }
@@ -80,12 +81,12 @@ int Qlearning::ChooseAction(int currstate)
        possibleAction = GetBestAction();
     }
 
-    // Fill temp matrix with "-1" to avoid selecting it again.
+  /*  // Fill temp matrix with "-1" to avoid selecting it again.
     for(int i = 0; i <= (rSize - 1); i++)
     {
         RTemp[i][currentState] = -1;
     }
-
+*/
 
 
     /*if(R[currentState][possibleAction] >= 0)
@@ -229,12 +230,15 @@ void Qlearning::UpdateReward(int currS, int prevS, int point, double time)
     //std::cout << "her1" << std::endl;
     //std::cout << gamma * R[currentState][possibleAction] << std::endl;
     rewardV=point/time;
-/*
+
     std::cout << "prev R:  " << R[prevS][currS] << std::endl;
+    std::cout << "prev S:  " << prevS << std::endl;
+    std::cout << "curr S:  " << currS << std::endl;
     std::cout << "Revar :  " << rewardV << std::endl;
     std::cout << "part 1:  " << alpha*( + gamma*(Qlearning::Maximum(currS,false))) << std::endl;
     std::cout << "part 2:  " << Qlearning::Maximum(currS,false) << std::endl;
-*/
+    std::cout << "whatever:  " << R[prevS][currS]+alpha*(rewardV + gamma*(Qlearning::Maximum(currS,false)) - R[prevS][currS]) << std::endl;
+
     R[prevS][currS]=R[prevS][currS]+alpha*(rewardV + gamma*(Qlearning::Maximum(currS,false)) - R[prevS][currS]);
 
     for(int i = 0; i <= (rSize - 1); i++){

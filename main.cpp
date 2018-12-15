@@ -18,65 +18,82 @@ int main(int argc, char *argv[])
     double times;
     Qlearning Qlearn;
 
-    for(int i = 0; i<1; i++){
+    for(int i = 0; i<1000; i++){
 
     int maxReward=0;
 
     Qlearn.Initialize();
     Qlearn.currentState=Qlearn.ChooseAction(0);
-    Qlearn.UpdateReward(0,Qlearn.currentState,0,1); //Update reward of choosen action.
+    std::cout << Qlearn.currentState << std::endl;
     Qlearn.prevState=0;
+    Qlearn.UpdateReward(Qlearn.currentState,Qlearn.prevState,0,1); //Update reward of choosen action.
+    Qlearn.prevState=Qlearn.currentState;
 
 
     for(int i=0; i<Qlearn.rSize-2;i++){
-        points=(std::rand()%20)*100;
-        times=100; //std::rand()%100+10;
+        /*points=(std::rand()%(missingM+1);
+        std::cout << "marbles" << points << std::endl;
+        missingM=missingM-points;
+        std::cout << "missingM" << missingM << std::endl;
+        points=points*1000; */
         switch (Qlearn.currentState) {
         case 0:
+            points=0;
             times=1;
             break;
         case 1:
-            times=std::rand()%10+10;
+            times=16;
+            points=1000;
             break;
         case 2:
-            times=std::rand()%10+10;
+            times=10;
+            points=1000;
             break;
         case 3:
-            times=std::rand()%10+50;
+            times=30;
+            points=1000;
             break;
         case 4:
-            times=std::rand()%10+30;
+            times=48;
+            points=1000;
             break;
         case 5:
-            times=std::rand()%10+10;
+            times=61;
+            points=1000;
             break;
         case 6:
-            times=std::rand()%10+20;
+            times=27;
+            points=1000;
             break;
         case 7:
-            times=std::rand()%10+1;
+            times=17;
+            points=1000;
             break;
         case 8:
-            times=std::rand()%10+60;
+            times=43;
+            points=1000;
             break;
         case 9:
-            times=std::rand()%10+100;
+            times=12;
+            points=1000;
             break;
         case 10:
-            times=std::rand()%10+120;
+            times=19;
+            points=1000;
             break;
         case 11:
-            times=std::rand()%10+3;
+            times=17;
+            points=1000;
             break;
 
         default:
             times=0;
             break;
         }
-        Qlearn.prevState=Qlearn.currentState;
         //std::cout << "current state:  " << Qlearn.currentState << std::endl;
-        Qlearn.UpdateReward(Qlearn.currentState,Qlearn.prevState,points, times);
         Qlearn.currentState=Qlearn.ChooseAction(Qlearn.currentState);
+        Qlearn.UpdateReward(Qlearn.currentState,Qlearn.prevState,points, times);
+        Qlearn.prevState=Qlearn.currentState;
         maxReward+=Qlearn.rewardV;
 
         Qlearn.PrintR();
@@ -91,6 +108,7 @@ int main(int argc, char *argv[])
 
     std::cout << "maxReward" << maxReward << std::endl;
     Qlearn.Run();
-    Qlearn.PrintRoute();
+    //Qlearn.PrintRoute();
     }
+    std::cout << Qlearn.numRand << std::endl;
 }
